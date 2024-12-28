@@ -73,10 +73,10 @@
 
 ### UI 介面範例圖
 #### 圖片 1：簡易
-![簡易](L.jpg)
+![簡易](https://github.com/41243205/win01/blob/444c841ffc2153a27412cfd1d5d201ea5f4cd25a/L.jpg)
 
 #### 圖片 2：中等
-![中等](M.jpg)
+![中等](https://github.com/41243205/win01/blob/444c841ffc2153a27412cfd1d5d201ea5f4cd25a/M.jpg)
 
 #### 圖片 3：困難
 ![困難](https://github.com/41243205/win01/blob/f2052c39ef518006781353fb9f9d57c902606c02/H.jpg)
