@@ -5,9 +5,8 @@
 #include <QTableWidget>
 #include <QLabel>
 #include <QResizeEvent> // 引入以支持重寫 resizeEvent
-#include <QSet>
-#include <QPair>
 
+// MainWindow.h
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -19,11 +18,8 @@ public:
 protected:
     void resizeEvent(QResizeEvent *event) override; // 新增，用於自適應窗口大小
 
-
-
 private slots:
-    void onCellChanged(int row, int col); // 單元格改變時的槽函數
-    void onCellClicked(int row, int column); // 單元格被點擊時的槽函數
+    void onCellChanged(int row, int column); // 單元格改變時的槽函數
     void checkWinCondition();               // 檢查是否完成遊戲
 
 private:
@@ -35,13 +31,11 @@ private:
     void checkGameOver();                   // 檢查遊戲是否結束
 
     QLabel *livesLabel;                     // 顯示生命值的標籤
-    int puzzle[16][16] = {0};               // 數獨題目
-    int solution[16][16] = {0};             // 數獨答案
+    int puzzle[9][9] = {0};                 // 數獨題目
+    int solution[9][9] = {0};               // 數獨答案
     QSet<QPair<int, int>> usedNumbers;      // 記錄已使用過的行與列組合
     int lives;                              // 剩餘生命值
     QTableWidget *tableWidget;              // 數獨表格部件
-    int selectedRow;                        // 記錄當前選中的行
-    int selectedCol;                        // 記錄當前選中的列
 };
 
 #endif // MAINWINDOW_H
