@@ -1,4 +1,4 @@
-#include "MainWindow.h"
+#include "MainWindow_L.h"
 #include <QVBoxLayout>
 #include <QHeaderView>
 #include <QMessageBox>
