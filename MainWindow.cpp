@@ -7,24 +7,37 @@
 #include <QComboBox>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), sudokuGame_H(nullptr),sudokuGame_L(nullptr),sudokuGame_M(nullptr)
+    : QMainWindow(parent), sudokuGame_H(nullptr), sudokuGame_L(nullptr), sudokuGame_M(nullptr)
 {
     setWindowTitle("數獨遊戲");
     resize(400, 300);
 
+    // 設定背景
+    setStyleSheet("background-color: #FFE6F5;");
+
+    QFont font;
+    font.setPointSize(20); // 調整全局字型大小
+
     titleLabel = new QLabel("數獨遊戲", this);
     titleLabel->setAlignment(Qt::AlignCenter);
+    titleLabel->setFont(font);
 
     startButton = new QPushButton("開始遊戲", this);
+    startButton->setFont(font);
+    startButton->setStyleSheet("background-color: #D6E8D9;");
     connect(startButton, &QPushButton::clicked, this, &MainWindow::onStartGameClicked);
 
     difficultyComboBox = new QComboBox(this);
+    difficultyComboBox->setFont(font);
+    difficultyComboBox->setStyleSheet("background-color: #FFE4CA;");
     difficultyComboBox->addItem("選擇難度");
     difficultyComboBox->addItem("初級");
     difficultyComboBox->addItem("中級");
     difficultyComboBox->addItem("高級");
 
     rulesButton = new QPushButton("規則", this);
+    rulesButton->setFont(font);
+    rulesButton->setStyleSheet("background-color: #D2E9FF;");
     connect(rulesButton, &QPushButton::clicked, this, &MainWindow::onRulesClicked);
 
     QVBoxLayout *layout = new QVBoxLayout;
@@ -62,11 +75,7 @@ void MainWindow::onStartGameClicked()
         return;
     }
 
-
     // 根據難度創建不同的數獨遊戲
-
-
-
     if (difficulty == "初級") {
         if (sudokuGame_L != nullptr) {
             delete sudokuGame_L;
@@ -78,7 +87,6 @@ void MainWindow::onStartGameClicked()
         sudokuGame_L->setupBorders_L();
         sudokuGame_L->show();
     } else if (difficulty == "中級") {
-        // 中級難度的生成邏輯
         if (sudokuGame_M != nullptr) {
             delete sudokuGame_M;
         }
@@ -89,10 +97,10 @@ void MainWindow::onStartGameClicked()
         sudokuGame_M->setupBorders_M();
         sudokuGame_M->show();
     } else if (difficulty == "高級") {
-        // 高級難度的生成邏輯
         if (sudokuGame_H != nullptr) {
             delete sudokuGame_H;
         }
+
         sudokuGame_H = new MainWindow_H(this);
         sudokuGame_H->generateSudokuSolution();
         sudokuGame_H->digHoles();
@@ -103,9 +111,13 @@ void MainWindow::onStartGameClicked()
 
 void MainWindow::onRulesClicked()
 {
-    QMessageBox::information(this, "數獨遊戲規則",
-                             "1. (高級)每個數字 1 至 16 在每行、每列、每 4x4 區域中只能出現一次。\n"
-                             "   (初、中級)每個數字 1 至 16 在每行、每列、每 4x4 區域中只能出現一次。\n"
-                             "2. 開始遊戲後，你需要填入正確的數字，直到解開數獨。\n"
-                             "3. 每次輸入錯誤會扣除一條生命，生命為 3 條，當生命值為 0 時，遊戲結束。");
+    QMessageBox rulesBox(this);
+    rulesBox.setFont(QFont("Arial", 14)); // 調整字型大小
+    rulesBox.setWindowTitle("數獨遊戲規則");
+    rulesBox.setText(
+        "1. (高級)每個數字 1 至 16 在每行、每列、每 4x4 區域中只能出現一次。\n"
+        "   (初、中級)每個數字 1 至 16 在每行、每列、每 4x4 區域中只能出現一次。\n"
+        "2. 開始遊戲後，你需要填入正確的數字，直到解開數獨。\n"
+        "3. 每次輸入錯誤會扣除一條生命，生命為 3 條，當生命值為 0 時，遊戲結束。");
+    rulesBox.exec();
 }
