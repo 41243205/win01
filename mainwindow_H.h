@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H_H
+﻿#ifndef MAINWINDOW_H_H
 #define MAINWINDOW_H_H
 
 #include <QMainWindow>
@@ -13,6 +13,9 @@ class MainWindow_H : public QMainWindow
     Q_OBJECT
 
 public:
+    void generateSudokuSolution();          // 生成完整的數獨解答
+    void digHoles();                        // 挖空生成數獨題目
+    void setupBorders();                    // 設置九宮格邊線
     explicit MainWindow_H(QWidget *parent = nullptr);
     ~MainWindow_H();
 
@@ -27,9 +30,7 @@ private slots:
     void checkWinCondition();               // 檢查是否完成遊戲
 
 private:
-    void generateSudokuSolution();          // 生成完整的數獨解答
-    void digHoles();                        // 挖空生成數獨題目
-    void setupBorders();                    // 設置九宮格邊線
+
     bool solveSudoku(int row, int col);     // 使用回溯法解決數獨
     bool isSafe(int row, int col, int num); // 檢查在指定位置填入數字是否安全
     void checkGameOver();                   // 檢查遊戲是否結束
